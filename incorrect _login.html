@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Form</title>
+<link rel="stylesheet" href="./login.css">
+    <style>
+        header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+	background-color: #E1E8EE;
+    z-index: 1000;
+}
+
+/* Add the rest of your CSS styles below */
+
+    </style>
+</head>
+<body>
+    <header>
+        <h2 style="color: red; text-align:center;">Incorrect Password or Email!</h2>
+    </header>
+    <div class="form-structor">
+        <form action="signup.php" method="post" id="registrationForm" onsubmit="return validateForm()">
+            <div class="signup">
+                <h2 class="form-title" id="signup"><span>or</span>Sign up</h2>
+                <div class="form-holder">
+                    <input type="text" id="name" name="name" class="input" placeholder="Name" required/>
+                    <input type="tel" id="mobileNo" name="mobileNo" class="input" placeholder="MobileNO" required/>
+                    <input type="email" id="email" name="email" class="input" placeholder="Email" required/>
+                    <input type="password" id="password" name="password" class="input" placeholder="Password" required/>
+                    <input type="password" id="confirmPassword" name="confirmPassword" class="input" placeholder="Confirm Password" required />
+                </div>
+                <button class="submit-btn">Sign up</button>
+            </div>
+        </form>
+
+        <form id="login-form" action="login.php" method="POST">
+            <div class="login slide-up">
+                <div class="center">
+                    <h2 class="form-title" id="login">User Login  <br><span>or</span><span><a href="./admin_login.php">Admin login</a></span></h2>
+                    <div class="form-holder">
+                        <input type="email" id="email" name="email" class="input" placeholder="Email" />
+                        <input type="password" id="password" name="password" class="input" placeholder="Password" />
+                    </div>
+                    <button class="submit-btn">Log in</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="./login.js"></script>
+</body>
+</html>

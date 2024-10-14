@@ -1,0 +1,55 @@
+<!-- contactus.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Contact Us - Crafting Homes</title>
+    <link rel="icon" type="image/x-icon" href="./logo.jpg">
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li class="active"><a href="./contact.html">Contact</a></li>
+            <li class="nav-right"><a href="login.html"><i class="fa fa-fw fa-user"></i>Login </a></li>
+        </ul>
+    </nav>
+
+    <section class="contact-form">
+        <h2>Contact Us</h2>
+        <p>Have questions or need assistance? Reach out to us!</p>
+
+        <div class="contact-details">
+            <p><strong>Phone:</strong> +13088886496 <a href="tel:++13088886496"> call</a></p>
+            <p><strong>Email:</strong> carafting_homes@gmail.com <a href="mailto:kalshettirahul104@gmail.com "> mail</a></p>
+        </div>
+
+        <form action="./contact_form.php" method="post" onsubmit="alert(' Thank You for contact with us');">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Your Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Crafting Homes. All rights reserved.</p>
+    </footer>
+
+    <!-- <script >
+        alert(" Thank You for cantact with us");
+    </script> -->
+</body>
+</html>

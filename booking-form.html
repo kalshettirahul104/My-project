@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Painting Service</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./booking-form.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h2>Book Painting Service</h2>
+        <form action="submit_booking.php" method="POST" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error-message" id="email-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+                <div class="error-message" id="phone-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="pincode">Pincode:</label>
+                <input type="text" id="pincode" name="pincode" pattern="[0-9]{6}" minlength="6" maxlength="6" required>
+                <div class="error-message" id="pincode-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="date">Preferred Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="time">Preferred Time:</label>
+                <input type="number" id="hours" name="hours" min="1" max="12" required>
+                <input type="number" id="minutes" name="minutes" min="0" max="59" required>
+                <select id="ampm" name="ampm" required>
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+                <div class="error-message" id="time-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="requirements">Requirements:</label><br>
+                <select id="requirements" name="requirements[]" multiple="multiple" class="js-example-basic-multiple" required>
+                    <option value="Interior Painting">Interior Painting</option>
+                    <option value="Exterior Painting">Exterior Painting</option>
+                    <option value="One Wall Painting">One Wall Painting</option>
+                    <option value="Waterproofing">Waterproofing</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label><br>
+                <textarea id="description" name="description" rows="3"></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+        });
+
+        function validateForm() {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var phone = document.getElementById("phone").value;
+            var address = document.getElementById("address").value;
+            var pincode = document.getElementById("pincode").value;
+            var hours = document.getElementById("hours").value;
+            var minutes = document.getElementById("minutes").value;
+            var ampm = document.getElementById("ampm").value;
+            var date = document.getElementById("date").value;
+
+            if (name == "" || email == "" || phone == "" || address == "" || pincode == "" || hours == "" || minutes == "" || ampm == "" || date == "") {
+                alert("Please fill in all required fields.");
+                return false;
+            }
+
+            // Email validation
+            var emailRegex = /\S+@\S+\.\S+/;
+            if (!emailRegex.test(email)) {
+                document.getElementById("email-error").innerHTML = "Please enter a valid email address.";
+                return false;
+            }
+
+            // Phone number validation
+            var phoneRegex = /^\d{10}$/;
+            if (!phoneRegex.test(phone)) {
+                document.getElementById("phone-error").innerHTML = "Please enter a valid 10-digit phone number.";
+                return false;
+            }
+
+            // Pincode validation
+            var pincodeRegex = /^\d{6}$/;
+            if (!pincodeRegex.test(pincode)) {
+                document.getElementById("pincode-error").innerHTML = "Please enter a valid 6-digit pincode.";
+                return false;
+            }
+
+            // Preferred time validation
+            var selectedTime = parseInt(hours) + (ampm === "PM" ? 12 : 0); // Convert to 24-hour format
+            var selectedMinutes = parseInt(minutes);
+            if ((selectedTime < 9 || selectedTime > 19) || (selectedTime === 19 && selectedMinutes > 30) || (selectedTime === 9 && selectedMinutes < 30)) {
+                document.getElementById("time-error").innerHTML = "Preferred time should be between 9:30 AM and 7:30 PM.";
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
